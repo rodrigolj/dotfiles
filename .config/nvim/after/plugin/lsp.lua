@@ -1,7 +1,7 @@
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
-lsp.ensure_installed({ "sumneko_lua", "tsserver", "solargraph", "intelephense", "tailwindcss" })
+lsp.ensure_installed({ "sumneko_lua", "solargraph", "intelephense", "tailwindcss", "tsserver" })
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -20,7 +20,7 @@ lsp.on_attach(function(client, bufnr)
     print("help")
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definitions() end, opts)
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
     vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
@@ -58,6 +58,24 @@ lsp.configure(
 lsp.configure(
     "solargraph", {
     filetypes = { "ruby", "eruby" }
+})
+
+lsp.configure(
+    "intelephense", {
+    filetypes = { "php" }
+})
+
+lsp.configure(
+    "tailwindcss", {
+    classAttributes = { "class", "className", "classList", "ngClass" },
+    root_pattern = { 'tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json',
+        'node_modules' },
+    init_options = {
+        userLanguages = {
+            eruby = "erb"
+        },
+    },
+    validate = true
 })
 
 lsp.setup()

@@ -29,6 +29,7 @@ return require("packer").startup(function(use)
             { "L3MON4D3/LuaSnip" },
         }
     }
+    use 'wuelnerdotexe/vim-astro'
     use 'norcalli/nvim-colorizer.lua'
     use { 'junegunn/fzf.vim', dir = '~/bin/fzf', run = './install -all' }
     use 'vijaymarupudi/nvim-fzf'
@@ -40,4 +41,5 @@ return require("packer").startup(function(use)
     use 'windwp/nvim-ts-autotag'
     use 'windwp/nvim-autopairs'
     use 'prettier/vim-prettier'
+    use 'github/copilot.vim'
 end)

@@ -1,5 +1,5 @@
 require("rlima.keymap")
-local map = require("rlima.keymap").map
+--local map = require("rlima.keymap").map
 local nmap = require("rlima.keymap").nmap
 local nnoremap = require("rlima.keymap").nnoremap
 local vnoremap = require("rlima.keymap").vnoremap
@@ -49,3 +49,15 @@ nnoremap("<leader>fn",
     function() require('telescope.builtin').find_files({ cwd = "~/.config",
             search_dirs = { "i3", "bspwm", "nvim", "polybar", "sxhkd", "picom", "alacritty" } })
     end, silent)
+
+-- Split Views
+nnoremap("sh", vim.cmd.split)
+nnoremap("sv", vim.cmd.vsplit)
+nnoremap("sh", "<C-w>h")
+nnoremap("sj", "<C-w>j")
+nnoremap("sk", "<C-w>k")
+nnoremap("sl", "<C-w>l")
+
+-- Copilot
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
