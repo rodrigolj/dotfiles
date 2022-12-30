@@ -1,0 +1,7 @@
+#!/bin/sh
+role=$(xprop -id $id | grep WM_WINDOW_ROLE | awk -F '"' '{print $2}')
+case $role in
+  About|GtkFileChooserDialog)
+      state=floating;
+      ;;
+esac
